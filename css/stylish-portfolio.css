@@ -155,23 +155,34 @@ hr.small {
     position: relative;
     width: 100%;
     height: 100%;
+    color: #fff;
     background: url(../img/bg.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
+h2 {
+    color: #fff;
+}
+
+p {
+    color: #fff;
+}
 
 /* About */
 
 .about {
     padding: 50px 0;
+    background: linear-gradient(black,#2f363d);
 }
 
 /* Services */
 
 .services {
     padding: 50px 0;
+    /* background: #2f363d; */
+    background: linear-gradient(#2f363d,#2f363d);
 }
 
 .service-item {
@@ -196,6 +207,7 @@ hr.small {
 
 .portfolio {
     padding: 50px 0;
+
 }
 
 .portfolio-item {
@@ -214,6 +226,8 @@ hr.small {
 
 .call-to-action {
     padding: 50px 0;
+    background: #2f363d;
+
 }
 
 .call-to-action .btn {
@@ -240,5 +254,7 @@ hr.small {
 /* Footer */
 
 footer {
-    padding: 100px 0;
+
+    background: linear-gradient(#2f363d,black);
+    color:#757575;
 }
