@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  VR Controlled camera system
+permalink: /Portfolio
 ---
 <!-- ![RPS](/img/callout.jpg){: .img-center} -->
 
