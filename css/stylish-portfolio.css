@@ -170,6 +170,11 @@ p {
     color: #fff;
 }
 
+h1 {
+    color: #fff;
+    text-align:center;
+}
+
 /* About */
 
 .about {
@@ -183,6 +188,7 @@ p {
     padding: 50px 0;
     /* background: #2f363d; */
     background: linear-gradient(#2f363d,#2f363d);
+    list-style-position: inside;
 }
 
 .service-item {
@@ -201,6 +207,7 @@ p {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+
 }
 
 /* Portfolio */
