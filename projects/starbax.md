@@ -2,7 +2,6 @@
 layout: post
 title:  Starbax
 ---
-<!-- ![RPS](/img/callout.jpg){: .img-center} -->
 
 Date: December 2017
 
@@ -27,8 +26,7 @@ Partners: Solomon Wiznitzer, Ian Davis, Kashish Goyal
 &nbsp;
 
 # Project description
-<!-- ![RPS](/img/headset.jpg)
-<!-- {: .img-center} -->
+
 [<img src="./proj/demo_screen.png" width="370"
       style="margin-left:auto; margin-right:auto;display:block; "/>](https://vimeo.com/246536038)
 This project utilized the Robotic operating system (ROS), and Computer vision to allow a Baxter research robot to make a cup of coffee using a single serve Keurig machine. A more detailed explanation of the project can be found on its github repository as well as a video of the final results.
