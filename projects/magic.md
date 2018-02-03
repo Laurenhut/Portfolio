@@ -25,7 +25,7 @@ Partner: William Spies
 # Project description
 
 
-<img src="/home/rikako/Documents/git_directories/stylish-portfolio-jekyll/img/magic_thumb.png" width="370"
+<img src="https://github.com/Laurenhut/Portfolio/blob/master/img/magic_thumb.png" width="370"
       style="margin-left:auto; margin-right:auto; display:block;"/>
 
 This project's goal is to erase red text written on a piece of newspaper from a prerecorded video.
