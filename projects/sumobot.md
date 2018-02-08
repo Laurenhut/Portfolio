@@ -22,9 +22,7 @@ Category: Mechatronics, Embedded systems, C
 
 ## Hardware
 
-Arduino Uno, QTR-1A line sensors, IR sensors
-
-
+Arduino Uno, QTR-1A line sensors, IR sensors, Servo motors
 
 &nbsp;
 &nbsp;
@@ -32,6 +30,10 @@ Arduino Uno, QTR-1A line sensors, IR sensors
 # Project description
 <!-- ![RPS](/img/headset.jpg)
 <!-- {: .img-center} -->
+
+<img src="./proj/sumobot/front1.jpg" width="370" style="margin-left:auto; margin-right:auto;padding: 10px;"/>
+<img src="./proj/sumobot/side1.jpg" width="370" style="margin-left:auto; margin-right:auto;padding: 10px;"/>
+
 
 This project was created for a class competition.
     For the competition participants had to create an autonomous
@@ -43,8 +45,8 @@ This project was created for a class competition.
     board to send PWM signals to the l293d motor
     controllers that determine the speed and direction the wheels turn.
 
-
-For distance and direction detection three Ir sensors were used at the front of the robot, One sensor that faces forward, one that faces to the robots  right, and one that faces to the robots left.
+<img src="./proj/sumobot/full block diagram.png" width="370" style="float: left;margin-left:auto; margin-right:auto;padding: 10px;"/>
+For distance and direction detection two Ir sensors were used at the front of the robot, one on each of the front corners of the robot pointed  45 degrees out from the face of the robot.
 The Ir sensors will detect where the opponent is and if the opponent is left, right, or in front of
 the robot. When the direction of the opponent is identified the robot would then approach and push its opponent until it
 falls outside of the sumo ring.
@@ -60,7 +62,7 @@ falls outside of the sumo ring.
 
 
   Combining and utilizing all of these sensory inputs in a state machine
-  lead to a successful sumobot that was able to advance into the second
+  lead to a successful Sumobot that was able to advance into the second
   round of the class competition.
 
 <!--

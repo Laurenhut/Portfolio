@@ -9,7 +9,7 @@ title:  VR Controlled camera system
 
    Class: Senior Design
 
-   Category: Control systems, mechatronics, C, Python
+   Category: Control systems, mechatronics, C,
 
    Partners: Spencer Nelson, Silas Kuchta, Loagan Baerenwald
 
@@ -24,16 +24,16 @@ title:  VR Controlled camera system
 &nbsp;
 
 ## Hardware
-   HTC Vive, Raspberry Pi, Tiva 123-g development board
+   HTC Vive, Raspberry Pi, Tiva 123-g development board, Brushless DC Motors
 
 
 &nbsp;
 &nbsp;
 
-# Project description
+# Project descriptions
 <!-- ![RPS](/img/headset.jpg)
 <!-- {: .img-center} -->
-
+<img src="./proj/SeniorDesign/01-full.jpg" width="470" style="margin-left:auto; margin-right:auto;padding: 10px;display:block;"/>
 This project address the need for there to be a more engaging first person video experience for hobbyists
     that can utilize commercially available VR headsets. The prototype uses an HTC Vive VR headset connected
     to a Walkera gimbal through a Raspberry Pi Zero and the ARM cortex -M4F microcontroller on the Tiva C 123g
