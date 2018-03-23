@@ -1,28 +1,25 @@
 ---
 layout: post
-title:  Sumobot Competition
+title:  Super Maro AI
 ---
 <!-- ![RPS](/img/callout.jpg){: .img-center} -->
 
-Date: Febuary 2015
+Date: March 2018
 
-Class: Systems Interfacing
+Category: Artificial Intelligence, Machine Learning
 
-Category: Mechatronics, Embedded systems, C
+&nbsp;
+&nbsp;
+
+# Super Mario World playing agent.
 
 
 &nbsp;
 &nbsp;
 
-# Autonomous wrestling robot.
+## Software
 
-
-&nbsp;
-&nbsp;
-
-## Hardware
-
-Arduino Uno, QTR-1A line sensors, IR sensors, Servo motors
+Python, Lua, Lsnes emulator
 
 &nbsp;
 &nbsp;
@@ -32,18 +29,17 @@ Arduino Uno, QTR-1A line sensors, IR sensors, Servo motors
 <!-- {: .img-center} -->
 
 <img src="./proj/sumobot/front1.jpg" width="370" style="margin-left:auto; margin-right:auto;padding: 10px;"/>
-<img src="./proj/sumobot/side1.jpg" width="370" style="margin-left:auto; margin-right:auto;padding: 10px;"/>
 
 
-This project was created for a class competition.
-    For the competition participants had to create an autonomous
-    robot that would participate in a sumo competition.
-    With the ultimate goal being that one robot would push its
-    opponent out of the Sumo ring.
-    For the competition I utilized the ATmega328p
-    microcontroller on a modified Arduino development
-    board to send PWM signals to the l293d motor
-    controllers that determine the speed and direction the wheels turn.
+The goal of this projext is to create an agent that can sucessfully play Super mario world for the SNES in an emulator. 
+ In the early 200's goodl deep minds created an agent that was able to sucessfull replicate human leval play in 51 different Atari games using a method called deep Q learning. Deep Q learning is a technique that combines the the reinforcement learning method of Q- learning with the power of a neural network. This project utilizes the same techniques, but on 
+ 
+ When applied to this problem the Depp Q network will Observe the current state of the world then choose a command thats has been provided by the neural network. The result of this action will then be recorded and used in the Q learning heuristic function used to update the weights in the Neural network to provide a more acurate assessment for the next time that state is reached. To avoid having to train for an extrordinarily long time a batch size of x us used to update the weights every timestep. 
+ 
+ To get the curent state of the game from the emulator  the following data is extracted from the games registeres using a lua script and sent to the python script using a port opend by Zeromq the data sent over the port is mario's x and y position, if mario has collided with an enemy, if mario is currently on the ground, the number of enemies on the screen from 0-10, and the x & y positions and velocities of up to 10 enimies. an array of this informaion is then passed through the neural network to create confidance values for each of the possible button presses available to the agent. 
+ 
+ 
+   
 
 <img src="./proj/sumobot/full block diagram.png" width="370" style="float: left;margin-left:auto; margin-right:auto;padding: 10px;"/>
 For distance and direction detection two Ir sensors were used at the front of the robot, one on each of the front corners of the robot pointed  45 degrees out from the face of the robot.
