@@ -49,10 +49,11 @@ By replaying the level multiple times the Neural network will be trained to find
 
 # Future work on this project
 
-In the future I want to expand the neural network to accept a simple image representation of the ground and blocks, Mario's current position, and enemy/ coin positions in the visible portion of the screen. As well as the information currently provided to the neural network. By adding in the image representation this will give the neural network a more complete information about the current state of the game which will allow for more accurate Q-values. 
+In the future I want to expand the neural network to accept a simple image representation of the ground and blocks, Mario's current position, and enemy/ coin positions in the visible portion of the screen. As well as the information currently provided to the neural network. By adding in the image representation this will give the neural network a more complete information about the current state of the game which will allow for more accurate Q-values.
 
 &nbsp;
 &nbsp;
 
 Link to the projects github repository
+
 [source](https://github.com/Laurenhut/Super-Mario-AI)
