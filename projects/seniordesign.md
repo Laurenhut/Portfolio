@@ -5,13 +5,13 @@ title:  VR Controlled camera system
 ---
 <!-- ![RPS](/img/callout.jpg){: .img-center} -->
 
-   Date: May 2017
+Date: May 2017
 
-   Class: Senior Design
+Class: Senior Design
 
-   Category: Control systems, mechatronics, C,
+Categories: Control systems, mechatronics, C
 
-   Partners: Spencer Nelson, Silas Kuchta, Loagan Baerenwald
+Partners: Spencer Nelson, Silas Kuchta, Loagan Baerenwald
 
 
 &nbsp;
@@ -30,7 +30,7 @@ title:  VR Controlled camera system
 &nbsp;
 &nbsp;
 
-# Project descriptions
+# Project description
 <!-- ![RPS](/img/headset.jpg)
 <!-- {: .img-center} -->
 <img src="./proj/SeniorDesign/01-full.jpg" width="470" style="margin-left:auto; margin-right:auto;padding: 10px;display:block;"/>

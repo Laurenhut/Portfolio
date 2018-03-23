@@ -9,7 +9,7 @@ Date: November 2017
 
 Class: Computer Vision
 
-Category: Computer Vision, Python
+Categories: Computer Vision, Python
 
 Partner: William Spies
 

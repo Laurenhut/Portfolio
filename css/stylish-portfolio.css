@@ -219,15 +219,69 @@ h1 {
 
 .portfolio-item {
     margin-bottom: 30px;
+
+
+
 }
 
 .img-portfolio {
     margin: 0 auto;
 }
-
+/*
 .img-portfolio:hover {
     opacity: 0.8;
-}
+    filter:blur(2px) brightness(60%);
+   box-shadow:0 0 16px cyan;
+} */
+
+/* .portfolio-item : p{
+   position:absolute;
+   z-index:1;
+   top:30%;
+   width:100%;
+   text-align:center;
+   color:#fff;
+   opacity:0;
+   transition:.3s;
+
+ } */
+ .stuff{
+    color: #fff;
+    /* position:absolute; */
+    position:absolute;
+    text-align:center;
+    top:30%;
+    left:23%;
+    opacity:0;
+    transition:.3s;
+    /* padding-bottom: 80px; */
+ }
+ .stuff2{
+    color: #fff;
+    /* position:absolute; */
+    position:absolute;
+    text-align:left;
+    top:45%;
+    left:23%;
+    opacity:0;
+    transition:.3s;
+    /* padding-bottom: 80px; */
+ }
+
+ .portfolio-item:hover :not(img){
+
+    opacity:1;
+
+
+ }
+
+ .portfolio-item:hover img{
+    filter:blur(2px) brightness(60%);
+    box-shadow:0 0 16px cyan;
+    transition:.3s;
+
+
+  }
 
 /* Call to Action */
 

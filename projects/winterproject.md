@@ -8,7 +8,7 @@ Date: Febuary 2015
 
 Class: Systems Interfacing
 
-Categories: Mechatronics, Embedded systems, C
+Category: Mechatronics, Embedded systems, C
 
 
 &nbsp;
