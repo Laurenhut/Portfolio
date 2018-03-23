@@ -6,7 +6,7 @@ title:  Super Maro AI
 
 Date: March 2018
 
-Category: Artificial Intelligence, Machine Learning
+Category: Artificial Intelligence, Machine Learning, Reinforcement Learning
 
 &nbsp;
 &nbsp;
@@ -27,42 +27,31 @@ Python, Lua, Lsnes emulator
 # Project description
 <!-- ![RPS](/img/headset.jpg)
 <!-- {: .img-center} -->
+<img src="./proj/Winter/mario.png" width="370" style="margin-left:auto; margin-right:auto;display:block;"/>
+The goal of this project is to create an agent that can successfully play Super Mario world for the  SNES inside an emulator.
+ In the early 2000's Google's deep mind created an agent that was able to successful replicate human level play in 51 different Atari games using a method called deep Q learning. Deep Q learning (DQN) is a technique that combines the reinforcement learning method of Q-learning with the power of a neural network. This project utilizes the same DQN algorithm abet with a simplified neural network.
 
-<img src="./proj/sumobot/front1.jpg" width="370" style="margin-left:auto; margin-right:auto;padding: 10px;"/>
+<img src="./proj/Winter/mario.png" width="370" style="margin-left:auto; margin-right:auto;padding: 10px;"/>
+ As shown in the flow diagram in figure 1 the Deep Q network will receive the current state of the emulator. The state of the game consists of the following pieces of data  Mario's x and y position, if Mario has collided with an enemy, if Mario is currently on the ground, the number of enemies on the screen from 0-10, and the x & y positions and velocities of up to 10 enemies. This information is extracted from the games registers in a Lua script and sent as an array over a port opened between the Lua and Python scripts. This creates a 72x1 array that is then passed into the neural network represented in the picture in figure 2.
+ <img src="./proj/Winter/NN.png" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
 
+ The neural network used in this project was simplified from the convoluted neural network used in. The network used consists of three fully connected layers with 100 nodes and Softmax activation. Passing the state information through the neural network results in the networks estimation of the maximum future reward at the end of the game for each of the nine possible button commands (do nothing, left, right, up, down, jump, spin jump, jump right, spin jump right) from here forward these values will be referred to as Q-values. Positive rewards are given to the system for increasing the games score counter, which can be achieved by killing enemies and collecting coins, and for reaching the end of the level. A large negative reward of -100 is given to the system for dying and a small negative reward is given for any other action. Giving this constant negative reward will prevent the agent from waisting time in one area and will ultimately prevent it from dying due to  running out of time in a level.
+ By either choosing the action which results in the maximum reward or a random action. Allowing for random actions will allow the agent to explore. The chosen action would then be performed on the emulator, after 50 frames of the action being repeated the resulting state is stored along with the reward from the first action, and whether the emulator has died/ reached the end of the level.
 
-The goal of this projext is to create an agent that can sucessfully play Super mario world for the SNES in an emulator. 
- In the early 200's goodl deep minds created an agent that was able to sucessfull replicate human leval play in 51 different Atari games using a method called deep Q learning. Deep Q learning is a technique that combines the the reinforcement learning method of Q- learning with the power of a neural network. This project utilizes the same techniques, but on 
- 
- When applied to this problem the Depp Q network will Observe the current state of the world then choose a command thats has been provided by the neural network. The result of this action will then be recorded and used in the Q learning heuristic function used to update the weights in the Neural network to provide a more acurate assessment for the next time that state is reached. To avoid having to train for an extrordinarily long time a batch size of x us used to update the weights every timestep. 
- 
- To get the curent state of the game from the emulator  the following data is extracted from the games registeres using a lua script and sent to the python script using a port opend by Zeromq the data sent over the port is mario's x and y position, if mario has collided with an enemy, if mario is currently on the ground, the number of enemies on the screen from 0-10, and the x & y positions and velocities of up to 10 enimies. an array of this informaion is then passed through the neural network to create confidance values for each of the possible button presses available to the agent. 
- 
- 
-   
+ To train the neural network a method called experience replay is used. Experience replay takes a random sample of the agents experience (action, original state, resulting state, reward, died/at end?) and updated a states Q-value using the Bellman equation shown in figure 3. This equation updates the value of a given state and action at that state is represented by the reward gotten at the resulting state plus the maximum discounted Q-value of the resulting state. This method of training will maximize the use of the agents experiences because the agent can learn with that experience multiple times.
 
-<img src="./proj/sumobot/full block diagram.png" width="370" style="float: left;margin-left:auto; margin-right:auto;padding: 10px;"/>
-For distance and direction detection two Ir sensors were used at the front of the robot, one on each of the front corners of the robot pointed  45 degrees out from the face of the robot.
-The Ir sensors will detect where the opponent is and if the opponent is left, right, or in front of
-the robot. When the direction of the opponent is identified the robot would then approach and push its opponent until it
-falls outside of the sumo ring.
+ <img src="./proj/Winter/bellmaneq.png" width="370" style="margin-left:auto; margin-left:auto;"/>
 
+This sequence of events is repeated until the agent has either reached the end of the level or it has died due to running out of time or running into an enemy. In which case the emulator will reset the game back to the beginning of the level.
+By replaying the level multiple times the Neural network will be trained to find the most optimal button selection at a given state in the level that will prevent Mario from getting killed and maximize the total reward of the network.
 
-  The other concern was whether the robot was near to the edge of the sumo ring. When the robot searches for its opponent or
-  it is being pushed by the opponent there is a large possibility that it will get close to the edge of the sumo ring. In order to prevent
-  the robot from either letting itself get pushed out of the ring or driving itself out of the ring while searching the QTR-1A line sensors were used.
-  Through the photo resistor inside of the sensor the QTR-1A line sensors detect the black and white coloring of the sumo ring. If the sensors are detecting the black color of the inner
-  ring this means that the robot is currently safe from falling out of the ring and thus can continue searching for an opponent or attempting to push an opponent.
-  If the senors are detecting the white of the ring edge it should immediately reverse its direction and return to the center of the ring where it is safe.
+&nbsp;
 
+# Future work on this project
 
+In the future I want to expand the neural network to accept a simple image representation of the ground and blocks, Mario's current position, and enemy/ coin positions in the visible portion of the screen. As well as the information currently provided to the neural network.
 
-  Combining and utilizing all of these sensory inputs in a state machine
-  lead to a successful Sumobot that was able to advance into the second
-  round of the class competition.
-
-<!--
 &nbsp;
 &nbsp;
 
-[source](https://github.com/felix990302/Racket-Algorithms/blob/master/a11/RPS.rkt) -->
+[source](https://github.com/Laurenhut/Super-Mario-AI)
