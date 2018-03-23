@@ -29,10 +29,10 @@ Python, Lua, Lsnes emulator
 <!-- {: .img-center} -->
 <img src="./proj/Winter/mario.png" width="370" style="margin-left:auto; margin-right:auto;display:block;"/>
 The goal of this project is to create an agent that can successfully play Super Mario world for the  SNES inside an emulator.
- In the early 2000's Google's deep mind created an agent that was able to successful replicate human level play in 51 different Atari games using a method called deep Q learning. Deep Q learning (DQN) is a technique that combines the reinforcement learning method of Q-learning with the power of a neural network. This project utilizes the same DQN algorithm abet with a simplified neural network.
+ In 2013 Google's deep mind published a paper describing how they created an agent that was able to successful replicate human level play in Atari 2600 games using a method called deep Q learning. Deep Q learning (DQN) is a technique that combines the reinforcement learning method of Q-learning with the power of a neural network. This project utilizes the same DQN algorithm abet with a simplified neural network.
 
-<img src="./proj/Winter/mario.png" width="370" style="margin-left:auto; margin-right:auto;padding: 10px;"/>
- As shown in the flow diagram in figure 1 the Deep Q network will receive the current state of the emulator. The state of the game consists of the following pieces of data  Mario's x and y position, if Mario has collided with an enemy, if Mario is currently on the ground, the number of enemies on the screen from 0-10, and the x & y positions and velocities of up to 10 enemies. This information is extracted from the games registers in a Lua script and sent as an array over a port opened between the Lua and Python scripts. This creates a 72x1 array that is then passed into the neural network represented in the picture in figure 2.
+
+ the Deep Q network will receive the current state of the emulator. The state of the game consists of the following pieces of data  Mario's x and y position, if Mario has collided with an enemy, if Mario is currently on the ground, the number of enemies on the screen from 0-10, and the x & y positions and velocities of up to 10 enemies. This information is extracted from the games registers in a Lua script and sent as an array over a port opened between the Lua and Python scripts. This creates a 72x1 array that is then passed into the neural network represented in the picture in figure 2.
  <img src="./proj/Winter/NN.png" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
 
  The neural network used in this project was simplified from the convoluted neural network used in. The network used consists of three fully connected layers with 100 nodes and Softmax activation. Passing the state information through the neural network results in the networks estimation of the maximum future reward at the end of the game for each of the nine possible button commands (do nothing, left, right, up, down, jump, spin jump, jump right, spin jump right) from here forward these values will be referred to as Q-values. Positive rewards are given to the system for increasing the games score counter, which can be achieved by killing enemies and collecting coins, and for reaching the end of the level. A large negative reward of -100 is given to the system for dying and a small negative reward is given for any other action. Giving this constant negative reward will prevent the agent from waisting time in one area and will ultimately prevent it from dying due to  running out of time in a level.
@@ -49,9 +49,10 @@ By replaying the level multiple times the Neural network will be trained to find
 
 # Future work on this project
 
-In the future I want to expand the neural network to accept a simple image representation of the ground and blocks, Mario's current position, and enemy/ coin positions in the visible portion of the screen. As well as the information currently provided to the neural network.
+In the future I want to expand the neural network to accept a simple image representation of the ground and blocks, Mario's current position, and enemy/ coin positions in the visible portion of the screen. As well as the information currently provided to the neural network. By adding in the image representation this will give the neural network a more complete information about the current state of the game which will allow for more accurate Q-values. 
 
 &nbsp;
 &nbsp;
 
+Link to the projects github repository
 [source](https://github.com/Laurenhut/Super-Mario-AI)
