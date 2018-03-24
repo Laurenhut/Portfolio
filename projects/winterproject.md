@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Super Maro AI
+title:  Super Mario AI
 ---
 <!-- ![RPS](/img/callout.jpg){: .img-center} -->
 
@@ -19,7 +19,7 @@ Category: Artificial Intelligence, Machine Learning, Reinforcement Learning
 
 ## Software
 
-Python, Lua, Lsnes emulator
+Python, Lua, Lsnes emulator, Zeromq
 
 &nbsp;
 &nbsp;
@@ -29,16 +29,16 @@ Python, Lua, Lsnes emulator
 <!-- {: .img-center} -->
 <img src="./proj/Winter/mario.png" width="370" style="margin-left:auto; margin-right:auto;display:block;"/>
 The goal of this project is to create an agent that can successfully play Super Mario world for the  SNES inside an emulator.
- In 2013 Google's deep mind published a paper describing how they created an agent that was able to successful replicate human level play in Atari 2600 games using a method called deep Q learning. Deep Q learning (DQN) is a technique that combines the reinforcement learning method of Q-learning with the power of a neural network. This project utilizes the same DQN algorithm abet with a simplified neural network.
+ In 2013 Google's deep mind published a paper describing how they created an agent that was able to successful replicate human level play in Atari 2600 games using a method called deep Q learning. Deep Q learning (DQN) is a technique that combines the reinforcement learning method of Q-learning with the power of a neural network. This project utilizes the same DQN algorithm albeit with a simplified neural network.
 
 
- the Deep Q network will receive the current state of the emulator. The state of the game consists of the following pieces of data  Mario's x and y position, if Mario has collided with an enemy, if Mario is currently on the ground, the number of enemies on the screen from 0-10, and the x & y positions and velocities of up to 10 enemies. This information is extracted from the games registers in a Lua script and sent as an array over a port opened between the Lua and Python scripts. This creates a 72x1 array that is then passed into the neural network represented in the picture in figure 2.
+ The Deep Q network will receive the current state of the emulator. The state of the game consists of the following pieces of data  Mario's x and y position, if Mario has collided with an enemy, if Mario is currently on the ground, the number of enemies on the screen from 0-10, and the x & y positions and velocities of up to 10 enemies. This information is extracted from the games registers in a Lua script and sent as an array over a port opened by Zeromq between the Lua and Python scripts. This creates a 72x1 array that is then passed into the neural network represented in the picture in figure 2.
  <img src="./proj/Winter/NN.png" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
 
- The neural network used in this project was simplified from the convoluted neural network used in. The network used consists of three fully connected layers with 100 nodes and Softmax activation. Passing the state information through the neural network results in the networks estimation of the maximum future reward at the end of the game for each of the nine possible button commands (do nothing, left, right, up, down, jump, spin jump, jump right, spin jump right) from here forward these values will be referred to as Q-values. Positive rewards are given to the system for increasing the games score counter, which can be achieved by killing enemies and collecting coins, and for reaching the end of the level. A large negative reward of -100 is given to the system for dying and a small negative reward is given for any other action. Giving this constant negative reward will prevent the agent from waisting time in one area and will ultimately prevent it from dying due to  running out of time in a level.
- By either choosing the action which results in the maximum reward or a random action. Allowing for random actions will allow the agent to explore. The chosen action would then be performed on the emulator, after 50 frames of the action being repeated the resulting state is stored along with the reward from the first action, and whether the emulator has died/ reached the end of the level.
+ The neural network used in this project was simplified from the convoluted neural network used in the deep mind paper. The network used consists of three fully connected layers with 100 nodes and Softmax activation. Passing the state information through the neural network results in the networks estimation of the maximum future reward at the end of the game for each of the nine possible button commands (do nothing, left, right, up, down, jump, spin jump, jump right, spin jump right) from here forward these values will be referred to as Q-values. The system is given a small positive reward of +1 for increasing the game score, Which is achieved by killing enemies or collecting coins. A large positive reward of +100 is given for reaching the end of a level. A large negative reward of -100 is given to the system for dying and a small negative reward of -1 is given for any other action. Giving this constant negative reward will prevent the agent from remaining in one area and will ultimately prevent it from dying due to  running out of time in a level.
+ As per the DQN algorithem the next action performed is the one that has the highest Q-value or it is randomly selected. Allowing for random actions will let the agent more fully explore the possivle options. The chosen action would then be performed on the emulator, after 50 frames of the action being repeated. The resulting state is stored along with the reward gained the actions effect, and whether the emulator has died or reached the end of the level.
 
- To train the neural network a method called experience replay is used. Experience replay takes a random sample of the agents experience (action, original state, resulting state, reward, died/at end?) and updated a states Q-value using the Bellman equation shown in figure 3. This equation updates the value of a given state and action at that state is represented by the reward gotten at the resulting state plus the maximum discounted Q-value of the resulting state. This method of training will maximize the use of the agents experiences because the agent can learn with that experience multiple times.
+ To train the neural network a method called experience replay is used. Experience replay takes a random sample of the agents experiences: action, original state, resulting state, reward, died/at end and updates the Q-value of the original state using the Bellman equation shown in figure 3. This equation updates the Q-value of an action performed at a given state this value is represented by the summation of the reward given to the agent for that action and the maximum discounted Q-value of the resulting state. This method of training will efficiently use the agents experiences by allowing the agent to train multiple times with any one experience.
 
  <img src="./proj/Winter/bellmaneq.png" width="370" style="margin-left:auto; margin-left:auto;"/>
 
