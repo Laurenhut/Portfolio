@@ -32,22 +32,10 @@ The goal of this project is to create an agent that can successfully play Super 
  In 2013 Google's deep mind published a paper describing how they created an agent that was able to successful replicate human level play in Atari 2600 games using a method called deep Q learning. Deep Q learning (DQN) is a technique that combines the reinforcement learning method of Q-learning with the power of a neural network. This project utilizes the same DQN algorithm albeit with a simplified neural network.
 
 
- The Deep Q network will receive the current state of the emulator. The state of the game consists of the following pieces of data:
-
-     1. Mario's x position
-     2. Mario's y position
-     3. If Mario has collided with an enemy
-     4. If Mario is currently on the ground
-     5. The number of enemies on the screen from 0-10
-     6. x positions of up to 10 enemies
-     7. Y positions of up to 10 enemies
-     8. X velocities of up to 10 enemies
-     9. Y velocities of up to 10 enemies
-
- This information is extracted from the games registers in lsnes's built-in Lua compiler machine and sent as an array over a port opened by Zeromq between the Lua and Python scripts. This creates a 72x1 array that is then passed into the neural network represented in the picture in figure 2.
+ The Deep Q network will receive the current state of the emulator. The state of the game consists of a screen capture of the play area. This image is then converted to an HSV color representation and resized to be an 88x88 image. The newly resized image is then ran through the convolutional neural network represented in figure 2.
  <img src="./proj/Winter/NN.png" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
 
- The neural network used in this project was simplified from the convoluted neural network used in the deep mind paper. The network used consists of three fully connected layers with 100 nodes and Softmax activation. Passing the state information through the neural network results in the networks estimation of the maximum future reward at the end of the game for each of the nine possible button commands (do nothing, left, right, up, down, jump, spin jump, jump right, spin jump right) from here forward these values will be referred to as Q-values. The system is given a small positive reward of +1 for increasing the game score, Which is achieved by killing enemies or collecting coins. A large positive reward of +100 is given for reaching the end of a level. A large negative reward of -100 is given to the system for dying and a small negative reward of -1 is given for any other action. Giving this constant negative reward will prevent the agent from remaining in one area and will ultimately prevent it from dying due to  running out of time in a level.
+ The neural network used in this project has the same setup as the  convolutional neural network used in the deep mind paper. The network consists of three convolutional layers with window sizes of 8x8,4x4, and 4x4 and a fully connected layers with 512 nodes along with and relu activation on all layers.Passing the state information through the neural network results in the networks estimation of the maximum future reward at the end of the game for each of the nine possible button commands (do nothing, left, right, up, down, jump, spin jump, jump right, spin jump right) from here forward these values will be referred to as Q-values. The system is given a small positive reward of +1 for increasing the game score, Which is achieved by killing enemies or collecting coins. A large positive reward of +100 is given for reaching the end of a level. A large negative reward of -100 is given to the system for dying and a small negative reward of -1 is given for any other action. Giving this constant negative reward will prevent the agent from remaining in one area and will ultimately prevent it from dying due to  running out of time in a level.
  As per the DQN algorithm the next action performed is the one that has the highest Q-value or it is randomly selected. Allowing for random actions will let the agent more fully explore the possible options. The chosen action would then be performed on the emulator, after 50 frames of the action being repeated. The resulting state is stored along with the reward gained the actions effect, and whether the emulator has died or reached the end of the level.
 
  To train the neural network a method called experience replay is used. Experience replay takes a random sample of the agents experiences which are defined by an array containing the following information:
@@ -67,9 +55,10 @@ By replaying the level multiple times the program will gain a multitude of diffe
 
 &nbsp;
 
-# Future work on this project
+# Expansion of this project
 
-In the future I want to expand the neural network to accept a simple image representation of the ground and blocks, Mario's current position, and enemy/ coin positions in the visible portion of the screen. As well as the information currently provided to the neural network. By adding in the image representation this will give the neural network a more complete information about the current state of the game which will allow for more accurate Q-values.
+I have created a slightly modified agent to accommodate other 2D side scrolling video games namely the Atari games mentioned in the "Playing Atari with Deep Reinforcement Learning" paper. The modified agent uses the Atari games included in the AI gym reinforcement learning package which uses the games score to determine a reward. Outside of modifications to the reward system the rest of the algorithm remains the same. Currently the modified agent plays space invaders.
+
 
 Link to the projects github repository
 
