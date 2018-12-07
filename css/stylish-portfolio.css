@@ -214,6 +214,7 @@ h1 {
 
 .portfolio {
     padding: 50px 0;
+    background: linear-gradient(#2f363d,#2f363d);
 
 }
 
@@ -245,7 +246,7 @@ h1 {
    transition:.3s;
 
  } */
- .stuff{
+ .portfolio-item-header-text{
     color: #fff;
     /* position:absolute; */
     position:absolute;
@@ -256,7 +257,7 @@ h1 {
     transition:.3s;
     /* padding-bottom: 80px; */
  }
- .stuff2{
+ .portfolio-item-body-text{
     color: #fff;
     /* position:absolute; */
     position:absolute;
