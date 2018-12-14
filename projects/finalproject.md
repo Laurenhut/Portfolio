@@ -38,7 +38,7 @@ To see the github repository for this project follow this [link](https://github.
 The repository contains instructions on how to build and run the software to use the glove.
 
 
-### Creating the Virtual reality simulation  
+Creating the Virtual reality simulation  
 ---
 
 When creating the virtual reality simulation  Unity was chosen as the game engine. This engine was selected instead of The Unreal engine due to the availability of first party support of the Vive SDK. The platform also provides a large and active development community. The final and arguably one of the most important benefits of the Unity engine is that it can be freely accessed by hobbyists and students. This is a feature that the Unreal engine did not have at the time of this development.
@@ -48,14 +48,14 @@ The goal in creating this initial version of the simulation is to create a world
 
 Once the new physics simulation using Newton VR was integrated, a proximity based parenting system was created. This was accomplished using a method called raycasting. This system permits a grasped object to have the same transform as the user's hand object when the object is within a certain proximity of both the index and thumb fingers. This gives the visual sensation that the hand has actually picked up the object.
 
-### Interfacing with the glove
+Interfacing with the glove
 ---
 
 Interfacing between the glove and the simulation is achieved by a relatively straightforward solution. The position of the glove in free space is determined using the Vive puck and the proprietary tracking algorithms provided in the Vive SDK. The information describing the degree angles for the actuation of the index finger is communicated to the simulation. Information is also returned from the simulation to the glove which determines if the glove should be locked or unlocked. This is sent via serial communications using an off the shelf Bluetooth module.  
 
 Unity is a game engine and only accepts inputs from gaming peripherals such as a mouse and keyboard or from a steam compatible gamepad. Since the glove needs to send numerical data as a stopgap measure after data is received from the serial communications line it is then converted into joystick data using a Xbox virtual controller. This controller is able to connect to Unity through the Steam VR interface. The downside to using a virtual controller is that there is not two way communication between the controller and the simulation. Data pertaining to whether the glove should be locked or unlocked cannot be sent back through the virtual controller using features such a rumble or changing the values for the lights.  To get around this issue the windows 32 API can be accessed through C# to take control of the keyboard and toggle function keys like caps lock, number lock, or scroll lock.  With the ability of these keys to be toggled by Unity, their current state can be used to determine when an object is being grasped which signals data back to the Arduino to activate the motor to lock or unlock the glove,
 
-### Mechatronics in the glove
+Mechatronics in the glove
 ---
 
 In order for the glove to communicate with the simulation environment it needed a few basic features.
@@ -78,7 +78,7 @@ In order for the glove to communicate with the simulation environment it needed 
 
 
 
-### Designing the glove
+Designing the glove
 ---
 
 The glove went through two rounds of design.
