@@ -25,7 +25,7 @@ Arduino, C#, Python, Unity
 
 # Project description
 
-<img src="./proj/Winter/mario.png" width="370" style="margin-left:auto; margin-right:auto;display:block;"/>
+<img src="./proj/FInal/v2_glamour.png" width="370" style="margin-left:auto; margin-right:auto;display:block;"/>
 
 The goal of this project is to create a  virtual reality simulation utilizing the HTC Vive VR system as well as designing a hand held device that provides force feedback to the user when interfacing with the virtual reality simulation. The design (of)the glove was inspired by the shape of the steam  knuckles and oculous touch controller. Like other VR peripherals the glove is wireless and has a low power consumption due to its passive mechanical breaking system. (The) Simulation creates a realistic physics environment with which the user can interact with the Unity game engine.
 
@@ -39,7 +39,7 @@ The repository contains instructions on how to build and run the software to use
 ---
 
 When creating the virtual reality simulation  Unity was chosen as the game engine. This engine was selected instead of The Unreal engine due to the availability of first party support of the Vive SDK. The platform also provides a large and active development community. The final and arguably one of the most important benefits of the Unity engine is that it can be freely accessed by hobbyists and students. This is a feature that the Unreal engine did not have at the time of this development.
-  <img src="./proj/Winter/NN.png" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/> 
+  <img src="./proj/Winter/NN.png" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
 
 The goal in creating this initial version of the simulation is to create a world that can interact realistically with the user and simulated objects. We wanted the simulation to look reasonably realistic in terms of the underlying physics of how objects move and react to each other. Therefore, the base Unity physics engine could not be utilized. It was found to be a suboptimal choice due to how easily the  virtual hand model clipped through objects and collision detection never triggered. This was found to break the real world sense of immersion into the simulation. To remedy the clipping issue a package called Newton VR was used. Newton VR is an open source physics engine that overhauls the inbuilt Unity engine to create more realistic physics interactions. The most relevant feature to this package is that Newton VR objects cannot clip through each other.
 
@@ -64,7 +64,7 @@ In order for the glove to communicate with the simulation environment it needed 
 2. A locking/unlocking mechanism
 
    It was decided to use a passive locking system because it is less battery intensive. Also a force feedback that could be built without specialized motors or parts but could achieve the same amount of stopping power as a passive system. The locking mechanism that was chosen was a ratchet because of its simplicity and the high amount of stopping power a small ratchet can achieve when locked. Changing the ratchet from a freewheeling position to a locked position is accomplished using a small hobbyist motor connected to an Arduino.
-  <img src="./proj/Winter/NN.png" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
+  <img src="./proj/FInal/Final_schematic.png" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
 
 
 3. Communication method with the Vive computer
@@ -83,21 +83,23 @@ In order for the glove to communicate with the simulation environment it needed 
 The glove went through two rounds of design.
  The first design of the glove was a very basic model for a proof of design. It was not focused on ergonomics or ease of usability and was mostly focused on proving that the use of a ratchet as the locking mechanism was a viable solution.
 
- <img src="./proj/Winter/bellmaneq.png" width="420" style="margin-left:auto; margin-left:auto;"/>
+ <img src="./proj/FInal/v1_side.png" width="320" style="margin-left:auto; margin-left:auto;"/>
+ <img src="./proj/FInal/v1_back.png" width="320" style="margin-left:auto; margin-left:auto;"/>
 
  The major flaws in this design were as follows. First the difficulty in putting the glove on.  Second the force sensor used was quite flimsy and had a high possibility of breaking or slipping out of position. The index and thumb cups on the end of each of the protrusions were uncomfortable to use and awkward to hold when trying to move your index finger. The cups on the end were quite painful in that they cut into the skin. Finally the Vive puck was not very securely attached to the hand. This caused the orientation and angle inside the simulation to be incorrect when the device was active.
 
  The glove went through a cosmetic redesign to fix the problems found in the first design.  Most important was a change in ergonomics. In the redesign the new shape was based off of the general looks of the steam knuckles or the oculous hand controllers.
-  <img src="./proj/Winter/NN.png" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/> This is a design that wraps around the hand and is secured by the distal three fingers from the thumb. The mechanical components have remained constant in form through the design process. The original force sensor and index finger protrusion have been completely replaced by the addition of a strain gauge with a linear slide mounted on top. In the new design the ratchet head is spun by pushing and pulling on a ring that slides up and down a linear slide attached to the strain gauge. This mode of actuation proved to be less awkward to use than the original finger cuff method. It also allowed for different finger sizes and lengths to comfortably use the glove.
+  <img src="./proj/FInal/stl_files_exploded_view.jpg" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
+  <img src="./proj/FInal/v2_side.png" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
+  This is a design that wraps around the hand and is secured by the distal three fingers from the thumb. The mechanical components have remained constant in form through the design process. The original force sensor and index finger protrusion have been completely replaced by the addition of a strain gauge with a linear slide mounted on top. In the new design the ratchet head is spun by pushing and pulling on a ring that slides up and down a linear slide attached to the strain gauge. This mode of actuation proved to be less awkward to use than the original finger cuff method. It also allowed for different finger sizes and lengths to comfortably use the glove.
 
 
 Drawbacks of the design and simulation
 ---
+ <img src="./proj/FInal/v2_motor.png" width="300" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
 
 The current design and simulation is a functional prototype but there are many improvements which can be envisioned. One area of improvement would be the way the device acts under load. While the ratchet is locked and the user is squeezing the device the ratchet cannot be unloaded unless the user releases pressure and retracts their hand slightly. This limits what can be done in the simulation and can also affect the immersion experience.
-
 There are also a few weak points in the physical design of the glove. For example the push rod that locks and unlocks the ratchet can be bent or broken easily. Ideally the control rod would be made out of sturdier material, could be shortened, or a solution that attaches the motor directly to the ratchet head could be devised. With the current design the distance the motor needs to be from the control lever  restricts the size of the device. The device would be optimally user friendly if it were a smaller, less cumbersome size.
- <img src="./proj/Winter/bellmaneq.png" width="420" style="margin-left:auto; margin-left:auto;"/>
 
 ### Expansion of this project
 ---
