@@ -40,8 +40,8 @@ The repository contains instructions on how to build and run the software to use
 &nbsp;
 
 
-### Creating the Virtual reality simulation  
-
+Creating the Virtual reality simulation  
+===
 
 When creating the virtual reality simulation  Unity was chosen as the game engine. This engine was selected instead of The Unreal engine due to the availability of first party support of the Vive SDK. The platform also provides a large and active development community. The final and arguably one of the most important benefits of the Unity engine is that it can be freely accessed by hobbyists and students. This is a feature that the Unreal engine did not have at the time of this development.
   <img src="./proj/FInal/ph2.gif" width="370" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
@@ -51,6 +51,7 @@ The goal in creating this initial version of the simulation is to create a world
 Once the new physics simulation using Newton VR was integrated, a proximity based parenting system was created. This was accomplished using a method called raycasting. This system permits a grasped object to have the same transform as the user's hand object when the object is within a certain proximity of both the index and thumb fingers. This gives the visual sensation that the hand has actually picked up the object.
 &nbsp;
 &nbsp;
+
 
 Interfacing with the glove
 ===
@@ -85,6 +86,7 @@ In order for the glove to communicate with the simulation environment it needed 
 &nbsp;
 &nbsp;
 
+
 Designing the glove
 ===
 
@@ -104,8 +106,9 @@ The glove went through two rounds of design.
 &nbsp;
 &nbsp;
 
+
 Drawbacks of the design and simulation
----
+===
  <img src="./proj/FInal/v2_motor.png" width="300" style="float: right;margin-right:auto; margin-right:auto;padding: 10px;"/>
 
 The current design and simulation is a functional prototype but there are many improvements which can be envisioned. One area of improvement would be the way the device acts under load. While the ratchet is locked and the user is squeezing the device the ratchet cannot be unloaded unless the user releases pressure and retracts their hand slightly. This limits what can be done in the simulation and can also affect the immersion experience.
@@ -113,8 +116,9 @@ There are also a few weak points in the physical design of the glove. For exampl
 &nbsp;
 &nbsp;
 
+
 Expansion of this project
----
+===
 
 To make the prototype even more feature complete a few additions could be made. Modifying the design to better hide exposed wires by running channels through the devices body. Creating housing within the handle portion of the glove to fit the strain gague amplifier and a battey compartment would clean up the look of the device tremendously.
 Another possible expansion would be to create a more interesting simulation environment that better showcases the ability of the glove similar to many of the vr tech demos available on the Oculous store or Steam.  
