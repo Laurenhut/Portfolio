@@ -32,6 +32,7 @@ Your browser does not support the video tag.
 
 The goal of this project is to create a  virtual reality simulation utilizing the HTC Vive VR system as well as designing a hand held device that provides force feedback to the user when interfacing with the virtual reality simulation. The design of the glove was inspired by the shape of the steam  knuckles and Oculous touch controller. Like other VR peripherals the glove is wireless and has a low power consumption due to its passive mechanical breaking system.The simulation creates a realistic physics environment with which the user can interact with the Unity game engine.
 &nbsp;
+
 Presented below is an in-depth discussion of the project.
 To see the github repository for this project follow this [link](https://github.com/Laurenhut/VR-force-glove).
 
