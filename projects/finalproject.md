@@ -30,13 +30,13 @@ Arduino, C#, Python, Unity
 Your browser does not support the video tag.
 </video>
 
-The goal of this project is to create a  virtual reality simulation utilizing the HTC Vive VR system as well as designing a hand held device that provides force feedback to the user when interfacing with the virtual reality simulation. The design of the glove was inspired by the shape of the steam  knuckles and Oculous touch controller. Like other VR peripherals the glove is wireless and has a low power consumption due to its passive mechanical breaking system.The simulation creates a realistic physics environment with which the user can interact with the Unity game engine. Below is a bideo of the proect in action.
-
+The goal of this project is to create a  virtual reality simulation utilizing the HTC Vive VR system as well as designing a hand held device that provides force feedback to the user when interfacing with the virtual reality simulation. The design of the glove was inspired by the shape of the steam  knuckles and Oculous touch controller. Like other VR peripherals the glove is wireless and has a low power consumption due to its passive mechanical breaking system.The simulation creates a realistic physics environment with which the user can interact with the Unity game engine.
+&nbsp;
 Presented below is an in-depth discussion of the project.
 To see the github repository for this project follow this [link](https://github.com/Laurenhut/VR-force-glove).
 
 The repository contains instructions on how to build and run the software to use the glove.
-
+&nbsp;
 
 Creating the Virtual reality simulation  
 ---
@@ -47,6 +47,7 @@ When creating the virtual reality simulation  Unity was chosen as the game engin
 The goal in creating this initial version of the simulation is to create a world that can interact realistically with the user and simulated objects. We wanted the simulation to look reasonably realistic in terms of the underlying physics of how objects move and react to each other. Therefore, the base Unity physics engine could not be utilized. It was found to be a suboptimal choice due to how easily the  virtual hand model clipped through objects and collision detection never triggered. This was found to break the real world sense of immersion into the simulation. To remedy the clipping issue a package called Newton VR was used. Newton VR is an open source physics engine that overhauls the inbuilt Unity engine to create more realistic physics interactions. The most relevant feature to this package is that Newton VR objects cannot clip through each other.
 
 Once the new physics simulation using Newton VR was integrated, a proximity based parenting system was created. This was accomplished using a method called raycasting. This system permits a grasped object to have the same transform as the user's hand object when the object is within a certain proximity of both the index and thumb fingers. This gives the visual sensation that the hand has actually picked up the object.
+&nbsp;
 
 Interfacing with the glove
 ---
@@ -54,6 +55,7 @@ Interfacing with the glove
 Interfacing between the glove and the simulation is achieved by a relatively straightforward solution. The position of the glove in free space is determined using the Vive puck and the proprietary tracking algorithms provided in the Vive SDK. The information describing the degree angles for the actuation of the index finger is communicated to the simulation. Information is also returned from the simulation to the glove which determines if the glove should be locked or unlocked. This is sent via serial communications using an off the shelf Bluetooth module.  
 
 Unity is a game engine and only accepts inputs from gaming peripherals such as a mouse and keyboard or from a steam compatible gamepad. Since the glove needs to send numerical data as a stopgap measure after data is received from the serial communications line it is then converted into joystick data using a Xbox virtual controller. This controller is able to connect to Unity through the Steam VR interface. The downside to using a virtual controller is that there is not two way communication between the controller and the simulation. Data pertaining to whether the glove should be locked or unlocked cannot be sent back through the virtual controller using features such a rumble or changing the values for the lights.  To get around this issue the windows 32 API can be accessed through C# to take control of the keyboard and toggle function keys like caps lock, number lock, or scroll lock.  With the ability of these keys to be toggled by Unity, their current state can be used to determine when an object is being grasped which signals data back to the Arduino to activate the motor to lock or unlock the glove,
+&nbsp;
 
 Mechatronics in the glove
 ---
@@ -76,8 +78,7 @@ In order for the glove to communicate with the simulation environment it needed 
 
     This is achieved by a force sensor/ strain gauge attached to the index finger. When the glove is locked and the user is squeezing down the position of the index finger will cease to update. When the user has released pressure on the device the index finger is once again able to send updated positions.
 
-
-
+&nbsp;
 Designing the glove
 ---
 
@@ -94,6 +95,8 @@ The glove went through two rounds of design.
   <img src="./proj/FInal/v2_side.png" width="370" style="float: left;margin-right:auto; margin-right:auto;padding: 10px;"/>
   This is a design that wraps around the hand and is secured by the distal three fingers from the thumb. The mechanical components have remained constant in form through the design process. The original force sensor and index finger protrusion have been completely replaced by the addition of a strain gauge with a linear slide mounted on top. In the new design the ratchet head is spun by pushing and pulling on a ring that slides up and down a linear slide attached to the strain gauge. This mode of actuation proved to be less awkward to use than the original finger cuff method. It also allowed for different finger sizes and lengths to comfortably use the glove.
 
+&nbsp;
+&nbsp;
 
 Drawbacks of the design and simulation
 ---
@@ -101,8 +104,10 @@ Drawbacks of the design and simulation
 
 The current design and simulation is a functional prototype but there are many improvements which can be envisioned. One area of improvement would be the way the device acts under load. While the ratchet is locked and the user is squeezing the device the ratchet cannot be unloaded unless the user releases pressure and retracts their hand slightly. This limits what can be done in the simulation and can also affect the immersion experience.
 There are also a few weak points in the physical design of the glove. For example the push rod that locks and unlocks the ratchet can be bent or broken easily. Ideally the control rod would be made out of sturdier material, could be shortened, or a solution that attaches the motor directly to the ratchet head could be devised. With the current design the distance the motor needs to be from the control lever  restricts the size of the device. The device would be optimally user friendly if it were a smaller, less cumbersome size.
+&nbsp;
+&nbsp;
 
-### Expansion of this project
+Expansion of this project
 ---
 
 To make the prototype even more feature complete a few additions could be made. Modifying the design to better hide exposed wires by running channels through the devices body. Creating housing within the handle portion of the glove to fit the strain gague amplifier and a battey compartment would clean up the look of the device tremendously.
